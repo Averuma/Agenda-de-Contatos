@@ -2,14 +2,14 @@ from agenda.contato import Contato
 from agenda.agenda import Agenda
 
 
-def menu():
-    agenda = Agenda()
+def menu(agenda):
     while True:
         print("\n1. Adicionar Contato")
         print("2. Remover Contato")
         print("3. Buscar Contato")
         print("4. Listar Contatos")
-        print("5. Sair")
+        print("5. Limpar Agenda")
+        print("6. Sair")
         escolha = input("Escolha uma opção: ")
 
         if escolha == "1":
@@ -27,6 +27,10 @@ def menu():
         elif escolha == "4":
             agenda.listar_contatos()
         elif escolha == "5":
+            confirma = input("Tem certeza que deseja limpar a agenda? (s/n): ")
+            if confirma.lower() == "s":
+                agenda.limpar_agenda()
+        elif escolha == "6":
             print("Saindo...")
             break
         else:
@@ -34,4 +38,5 @@ def menu():
 
 
 if __name__ == "__main__":
-    menu()
+    agenda = Agenda()
+    menu(agenda)

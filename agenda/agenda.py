@@ -1,32 +1,23 @@
-from .contato import Contato
+from agenda.db import DBManager
+from agenda.contato import Contato
 
 
 class Agenda:
     def __init__(self):
-        self.contatos = []
+        self.db = DBManager()
 
     def adicionar_contato(self, contato):
-        self.contatos.append(contato)
+        self.db.adicionar_contato(contato)
         print("Contato adicionado com sucesso!")
 
     def remover_contato(self, nome):
-        for contato in self.contatos:
-            if contato.nome == nome:
-                self.contatos.remove(contato)
-                print("Contato removido com sucesso!")
-                return
-        print("Contato não encontrado.")
+        self.db.remover_contato(nome)
 
     def buscar_contato(self, nome):
-        for contato in self.contatos:
-            if contato.nome == nome:
-                print(contato)
-                return
-        print("Contato não encontrado.")
+        self.db.buscar_contato(nome)
 
     def listar_contatos(self):
-        if not self.contatos:
-            print("Nenhum contato na agenda.")
-        else:
-            for contato in self.contatos:
-                print(contato)
+        self.db.listar_contatos()
+
+    def limpar_agenda(self):
+        self.db.limpar_agenda()
